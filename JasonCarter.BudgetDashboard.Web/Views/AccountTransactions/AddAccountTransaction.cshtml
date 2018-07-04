@@ -1,0 +1,109 @@
+﻿@using Newtonsoft.Json
+@using Newtonsoft.Json.Serialization
+
+@{
+    ViewData["Title"] = "AddAccountTransaction";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model AddAccountTransactionViewModel;
+
+<script type="text/javascript">
+        var model = @Html.Raw(Json.Serialize(Model, new Newtonsoft.Json.JsonSerializerSettings { ContractResolver = new DefaultContractResolver()}))
+</script>
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="~/js/Common.js"></script>
+<script src="~/js/WebServiceProxy.js"></script>
+<script src="~/lib/bootstrap3-typeahead/bootstrap3-typeahead.js"></script>
+
+<script src="~/lib/moment/moment.js"></script>
+
+
+<link href="~/lib/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+<script src="~/lib/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
+
+
+@*<script src="~/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>*@
+<script src="~/js/AddAccountTransaction.js"></script>
+
+
+@*<link href="~/lib/bootstrap-datepicker/dist/css/bootstrap-datepicker.css" rel="stylesheet" />*@
+
+
+<script src="~/js/kendo/2017.2.504/kendo.all.min.js"></script>
+<link href="~/css/kendo/2017.2.504/kendo.bootstrap.min.css" rel="stylesheet" />
+<link href="~/css/kendo/2017.2.504/kendo.common.min.css" rel="stylesheet" />
+
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>Add Account Transaction</h2>
+
+            <form>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Account Transaction</div>
+                    <div class="panel-body">
+                        <div id="divAccountTransactionErrorMessage" class="alert alert-danger" role="alert">
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            <span id="spnAccountTransactionErrorMessage"></span>
+                        </div>
+
+
+                        <div class="form-group col-md-3">
+                            <label for="txtDate">Date:</label>
+                            <div class="input-group date" id='datetimepicker1'>
+                                <input type="text" class="form-control" id="txtDate" />
+                                <span class="input-group-addon" onmouseover="$(this).css('cursor','pointer')">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <label for="txtDate">Transaction Type:</label>
+                            <select class="form-control" id="selTransactionType">
+                                @foreach (var item in Model.TransactionTypes)
+                                {
+                                    if (item.IsDefault)
+                                    {
+                                        <option id="@item.Name" value="@item.TransactionTypeId" selected>@item.Name</option>
+                                    }
+                                    else
+                                    {
+                                        <option id="@item.Name" value="@item.TransactionTypeId">@item.Name</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <label for="txtTransactionSource">Transaction Source:</label>
+                            <input type="text" class="form-control" id="txtTransactionSource" data-id="" placeholder="Enter a source" />
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <label for="txtAmount">Amount:</label>
+                            <input type="text" class="form-control" id="txtAmount" placeholder="Enter an amount" />
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label for="txtNote">Note:</label>
+                            <input type="text" class="form-control" id="txtNote" placeholder="Enter an note" />
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" id="btnSaveAccountTransaction" class="btn btn-default">Save</button>
+                @Html.ActionLink("Cancel", "Index", "Home")
+            </form>
+        </div>
+    </div>
+</div>
+

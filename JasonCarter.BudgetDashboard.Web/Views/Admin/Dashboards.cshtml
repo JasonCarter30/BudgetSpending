@@ -1,0 +1,47 @@
+﻿@using Newtonsoft.Json.Serialization
+
+
+@{
+    ViewData["Title"] = "DataSources";
+    Layout = "~/Views/Admin/_Layout.cshtml";
+}
+
+
+@model AdminViewModel;
+
+
+<script type="text/javascript">
+        var model = @Html.Raw(Json.Serialize(Model, new Newtonsoft.Json.JsonSerializerSettings { ContractResolver = new DefaultContractResolver()}))
+</script>
+
+
+
+
+@{
+    ViewData["Title"] = "Dashboards";
+    Layout = "~/Views/Admin/_Layout.cshtml";
+}
+
+<h2>Dashboards</h2>
+
+
+
+
+<script src="~/js/kendo/2017.2.504/kendo.all.min.js"></script>
+
+<link href="~/css/kendo/2017.2.504/kendo.bootstrap.min.css" rel="stylesheet" />
+<link href="~/css/kendo/2017.2.504/kendo.common.min.css" rel="stylesheet" />
+
+
+<script src="~/js/WebServiceProxy.js"></script>
+<script src="~/js/Admin/Dashboards.js"></script>
+
+
+
+<div class="row">
+    <div id="divGridDashboards">
+    </div>
+</div>
+
+
+

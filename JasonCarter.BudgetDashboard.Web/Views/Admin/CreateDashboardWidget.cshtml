@@ -1,0 +1,137 @@
+﻿@using Newtonsoft.Json.Serialization
+
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="-1" />
+
+
+@{
+    ViewData["Title"] = "CreateWidget";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@model CreateDashboardWidgetModel;
+
+
+<script type="text/javascript">
+        var model = @Html.Raw(Json.Serialize(Model, new Newtonsoft.Json.JsonSerializerSettings { ContractResolver = new DefaultContractResolver()}))
+</script>
+
+<script src="~/js/kendo/2017.2.504/kendo.all.min.js"></script>
+
+<link href="~/css/kendo/2017.2.504/kendo.bootstrap.min.css" rel="stylesheet" />
+<link href="~/css/kendo/2017.2.504/kendo.common.min.css" rel="stylesheet" />
+
+<link href="~/css/kendo/2017.2.504/kendo.black.min.css" rel="stylesheet" />
+<link href="~/css/kendo/2017.2.504/kendo.metro.min.css" rel="stylesheet" />
+<link href="~/css/kendo/2017.2.504/kendo.metroblack.min.css" rel="stylesheet" />
+<link href="~/css/kendo/2017.2.504/kendo.silver.min.css" rel="stylesheet" />
+<link href="~/css/kendo/2017.2.504/kendo.moonlight.min.css" rel="stylesheet" />
+<link href="~/css/kendo/2017.2.504/kendo.blueopal.min.css" rel="stylesheet" />
+<link href="~/css/kendo/2017.2.504/kendo.bootstrap.min.css" rel="stylesheet" />
+<link href="~/css/kendo/2017.2.504/kendo.highcontrast.min.css" rel="stylesheet" />
+
+<script src="~/js/Common.js"></script>
+<script src="~/js/Admin/DataField.js"></script>
+<script src="~/js/Admin/KendoChartHelper.js"></script>
+<script src="~/js/Admin/DataItem.js"></script>
+<script src="~/js/Admin/DataList.js"></script>
+<script src="~/js/Admin/BaseModal.js"></script>
+<script src="~/js/Admin/InputModalDialog.js"></script>
+<script src="~/js/Admin/InputControl.js"></script>
+<script src="~/js/WebServiceProxy.js"></script>
+<script src="~/js/Admin/CreateDashboardWidget.js"></script>
+
+<h2>Create Widget</h2>
+
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="selDataSources">DataSource:</label>
+                <select class="form-control" id="selDataSources"></select>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <label for="selDataSources">Widget Type:</label>
+            <select class="form-control" id="selWidgetTypes"></select>
+        </div>
+        <div class="col-md-2" style="vertical-align: bottom">
+            <button type="button" id="btnCreateWidget" class="btn-default">Create</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div id="divWidgetStuff"></div>
+        </div>
+
+        <div class="col-md-6">
+            <div id="divWidgetCanvas"></div>
+        </div>
+
+        <div class="col-md-3">
+            <div id="divWidgetConfigurations"></div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<!--Select DataSource Modal -->
+<div id="myModal" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Select DataSource</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="txtAmount">Transaction Type:</label>
+                    <select class="form-control" id="lstStoredProcedures" style="width:100px"></select>
+                </div>
+
+                <div class="form-group">
+                    <label for="txtTransactionSource">Transaction Source:</label>
+                    <input type="text" class="form-control" id="txtTransactionSource" data-id="" placeholder="Enter a source" />
+                </div>
+
+                <div class="form-group">
+                    <label for="txtAmount">Amount:</label>
+                    <input type="text" class="form-control" id="txtAmount" placeholder="Enter amount">
+                </div>
+
+                <div class="form-group">
+                    <label for="txtNotes">Notes:</label>
+                    <input type="text" class="form-control" id="txtNotes" placeholder="Enter notes">
+                </div>
+
+                <button type="button" id="btnSaveAccountTransaction" class="btn btn-default">Save</button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+

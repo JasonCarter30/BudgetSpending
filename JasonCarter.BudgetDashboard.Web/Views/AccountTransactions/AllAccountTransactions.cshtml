@@ -1,0 +1,63 @@
+﻿@using Newtonsoft.Json.Serialization
+
+@{
+    ViewData["Title"] = "AllAccountTransactions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="-1" />
+
+@model BudgetDashboardViewModel;
+
+
+
+<script type="text/javascript">
+    var model = @Html.Raw(Json.Serialize(Model, new Newtonsoft.Json.JsonSerializerSettings { ContractResolver = new DefaultContractResolver()}))
+</script>
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="~/js/Common.js"></script>
+<script src="~/js/AllAccountTransactions.js"></script>
+
+<script src="~/js/kendo/2017.2.504/kendo.all.min.js"></script>
+
+<link href="~/css/kendo/2017.2.504/kendo.bootstrap.min.css" rel="stylesheet" />
+<link href="~/css/kendo/2017.2.504/kendo.common.min.css" rel="stylesheet" />
+
+
+
+
+<h2>All Account Transactions</h2>
+
+
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">Transactions</div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="txtDate">Transaction Type:</label>
+                <select class="form-control" style="width:100px" id="lstTransactionType">
+                    @foreach (var item in Model.TransactionTypes)
+                    {
+                        if (item.IsDefault)
+                        {
+                            <option id="@item.Name" value="@item.TransactionTypeId" selected>@item.Name</option>
+                        }
+                        else
+                        {
+                            <option id="@item.Name" value="@item.TransactionTypeId">@item.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div id="divGridAccountTransactions">
+
+            </div>
+        </div>
+    </div>
+</div>

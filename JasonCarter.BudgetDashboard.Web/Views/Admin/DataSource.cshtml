@@ -1,0 +1,56 @@
+﻿@using Newtonsoft.Json.Serialization
+
+
+@{
+    ViewData["Title"] = "DataSource";
+    Layout = "~/Views/Admin/_Layout.cshtml";
+}
+
+
+@model DataSourceViewModel;
+
+
+<script src="~/js/kendo/2017.2.504/kendo.all.min.js"></script>
+
+<link href="~/css/kendo/2017.2.504/kendo.bootstrap.min.css" rel="stylesheet" />
+<link href="~/css/kendo/2017.2.504/kendo.common.min.css" rel="stylesheet" />
+
+
+<script src="~/js/WebServiceProxy.js"></script>
+<script src="~/js/Admin/DataSource.js"></script>
+
+<script type="text/javascript">
+        var model = @Html.Raw(Json.Serialize(Model, new Newtonsoft.Json.JsonSerializerSettings { ContractResolver = new DefaultContractResolver()}))
+</script>
+
+
+
+<h2>Data Source</h2>
+
+
+
+
+
+
+<div class="jumbotron">
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Name:</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.DataSource.Name</p>
+            </div>
+
+            <label class="control-label col-sm-2" for="email">CommandText:</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">@Model.DataSource.CommandText</p>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+<button type="button" id="btnExecuteDataSource" class="btn">Execute</button>
+
+
+<div id="divDataSourceResults"></div>

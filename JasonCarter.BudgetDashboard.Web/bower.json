@@ -1,0 +1,14 @@
+{
+  "name": "asp.net",
+  "private": true,
+  "dependencies": {
+    "bootstrap3-typeahead": "v4.0.0",
+    "bootstrap-datepicker": "v1.7.1",
+    "moment": "momentjs#2.20.1",
+    "jquery": "3.2.1",
+    "eonasdan-bootstrap-datetimepicker": "bootstrap3-datetimepicker#v4.17.45"
+  },
+  "resolutions": {
+    "bootstrap": "v3.3.7"
+  }
+}

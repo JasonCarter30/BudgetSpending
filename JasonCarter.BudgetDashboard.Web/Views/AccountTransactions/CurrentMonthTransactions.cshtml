@@ -1,0 +1,105 @@
+﻿@using Newtonsoft.Json.Serialization
+
+@{
+    ViewData["Title"] = "CurrentMonthTransactions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@model CurrentMonthTransactionsViewModel;
+
+
+
+
+
+<script type="text/javascript">
+        var model = @Html.Raw(Json.Serialize(Model, new Newtonsoft.Json.JsonSerializerSettings { ContractResolver = new DefaultContractResolver()}))
+</script>
+
+
+@*<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>*@
+<script src="~/js/Common.js"></script>
+<script src="~/js/WebServiceProxy.js"></script>
+<script src="~/js/CurrentMonthTransactions.js"></script>
+
+<script src="~/js/kendo/2017.2.504/kendo.all.min.js"></script>
+
+<link href="~/css/kendo/2017.2.504/kendo.bootstrap.min.css" rel="stylesheet" />
+<link href="~/css/kendo/2017.2.504/kendo.common.min.css" rel="stylesheet" />
+
+
+
+<h2>Current Month Transactions</h2>
+
+<div id="divGridAccountTransactions">
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog"  aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Edit Account Transation</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group">
+                    <label for="txtAmount">Date:</label>
+                    <div class="input-group date" id='datetimepicker1'>
+                        <input type="text" class="form-control" id="txtDate" />
+                        <span class="input-group-addon" onmouseover="$(this).css('cursor','pointer')">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="txtAmount">Transaction Type:</label>
+                    <select class="form-control" id="lstTransactionTypes" style="width:100px">
+                        @foreach (var item in Model.TransactionTypes)
+                {
+                    if (item.IsDefault)
+                    {
+                        <option id="@item.Name" value="@item.TransactionTypeId" selected>@item.Name</option>
+            }
+            else
+            {
+                <option id="@item.Name" value="@item.TransactionTypeId">@item.Name</option>
+    }
+}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="txtTransactionSource">Transaction Source:</label>
+                    <input type="text" class="form-control" id="txtTransactionSource" data-id="" placeholder="Enter a source" />
+                </div>
+
+                <div class="form-group">
+                    <label for="txtAmount">Amount:</label>
+                    <input type="text" class="form-control" id="txtAmount" placeholder="Enter amount">
+                </div>
+
+                <div class="form-group">
+                    <label for="txtNotes">Notes:</label>
+                    <input type="text" class="form-control" id="txtNotes" placeholder="Enter notes">
+                </div>
+
+                <button type="button" id="btnSaveAccountTransaction" class="btn btn-default">Save</button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+

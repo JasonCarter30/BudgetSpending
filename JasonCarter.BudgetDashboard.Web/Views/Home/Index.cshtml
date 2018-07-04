@@ -1,0 +1,32 @@
+﻿@using Newtonsoft.Json
+@using Newtonsoft.Json.Serialization
+
+
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model BudgetDashboardViewModel;
+
+
+
+<script type="text/javascript">
+        var model = @Html.Raw(Json.Serialize(Model, new Newtonsoft.Json.JsonSerializerSettings { ContractResolver = new DefaultContractResolver()}))
+</script>
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+
+<script src="~/js/Home.js"></script>
+
+<script src="~/js/kendo/2017.2.504/kendo.all.min.js"></script>
+
+<link href="~/css/kendo/2017.2.504/kendo.bootstrap.min.css" rel="stylesheet" />
+<link href="~/css/kendo/2017.2.504/kendo.common.min.css" rel="stylesheet" />
+
+
+
+
+<h2>Budget Dashboard</h2>
