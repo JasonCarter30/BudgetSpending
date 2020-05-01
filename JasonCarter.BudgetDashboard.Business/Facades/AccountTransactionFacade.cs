@@ -276,10 +276,10 @@ namespace JasonCarter.BudgetDashboard.Business.Facades
                     }
                     items.ToList().ForEach(x =>
                     {
-                        using (AccountTransactionBuilder builder = new AccountTransactionBuilder(this))
+                        using (AccountTransactionBuilder builder = new AccountTransactionBuilder(x,this))
                         {
-                            builder.Build(x);
-                            result.Add(builder.GetResult() as AccountTransaction);
+                            builder.Build();
+                            result.Add(builder.GetResult());
                         }
                     });
                     

@@ -60,35 +60,36 @@ namespace JasonCarter.BudgetDashboard.Common
             {
                 //var url = "http://localhost/ApplicationConfiguration.WebAPI/api/ApplicationConfiguration/GetApplicationConfigurationByAssemblyName?assemblyName=" + assemblyName;
 
-                var url = "http://localhost:2112/api/ApplicationConfiguration/GetApplicationConfigurationByAssemblyName?assemblyName=" + assemblyName;
+                var url = "http://192.168.1.149:2112/api/ApplicationConfiguration/GetApplicationConfigurationByAssemblyName?assemblyName=" + assemblyName;
 
                 //var response = client.GetAsync(url).Result;
 
-                var response = client.GetAsync(url);
-
-                response.Wait();
-
-                var result = response.Result;
-
-                if (result.IsSuccessStatusCode)
+                using (var response = client.GetAsync(url))
                 {
-                    var responseContent = result.Content;
+                    response.Wait();
 
-                    string json = responseContent.ReadAsStringAsync().Result;
+                    var result = response.Result;
 
-                    returnValue = JObject.Parse(json);
-
-                    returnValue["application"]["applicationConfigurationItems"].ToList().ForEach(x =>
+                    if (result.IsSuccessStatusCode)
                     {
-                        AppConfigItems.Add(x["configurationItem"]["name"].ToString(), (string)x["value"]);
-                        appConfigurationItems.Add(new AppConfigurationItem() { Name = x["configurationItem"]["name"].ToString(), Value = Decrypt(x["value"].ToString()) });
-                    });
+                        var responseContent = result.Content;
 
-                    returnValue["application"]["applicationCustomConfigurationItems"].ToList().ForEach(x =>
-                    {
-                        AppConfigItems.Add(x["name"].ToString(), (string)x["value"]);
-                        appConfigurationItems.Add(new AppConfigurationItem() { Name = x["name"].ToString(), Value = Decrypt(x["value"].ToString()) });
-                    });
+                        string json = responseContent.ReadAsStringAsync().Result;
+
+                        returnValue = JObject.Parse(json);
+
+                        returnValue["application"]["applicationConfigurationItems"].ToList().ForEach(x =>
+                        {
+                            AppConfigItems.Add(x["configurationItem"]["name"].ToString(), (string)x["value"]);
+                            appConfigurationItems.Add(new AppConfigurationItem() { Name = x["configurationItem"]["name"].ToString(), Value = Decrypt(x["value"].ToString()) });
+                        });
+
+                        returnValue["application"]["applicationCustomConfigurationItems"].ToList().ForEach(x =>
+                        {
+                            AppConfigItems.Add(x["name"].ToString(), (string)x["value"]);
+                            appConfigurationItems.Add(new AppConfigurationItem() { Name = x["name"].ToString(), Value = Decrypt(x["value"].ToString()) });
+                        });
+                    }
                 }
             }
 

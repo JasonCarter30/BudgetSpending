@@ -1,39 +1,47 @@
-﻿using JasonCarter.BudgetDashboard.Business.Entities;
+﻿using JasonCarter.BudgetDashboard.Business.DataEntities;
+using JasonCarter.BudgetDashboard.Business.Entities;
 using JasonCarter.BudgetDashboard.Business.Facades;
 using System;
 
 namespace JasonCarter.BudgetDashboard.Business.Builder
 {
-    internal class AccountTransactionBuilder : Builder, IDisposable
+    internal class AccountTransactionBuilder : IEntityBuilder<IAccountTransaction>
     {
-        internal IAccountTransaction accountTransaction;
+        private IAccountTransaction _accountTransaction;
+        private AccountTransactionResult _accountTransactionResult;
         private AccountTransactionFacade _accountTransactionFacade { get; set; }
 
-        internal AccountTransactionBuilder(AccountTransactionFacade accountTransactionFacade)
+        internal AccountTransactionBuilder(AccountTransactionResult accountTransactionResult, AccountTransactionFacade accountTransactionFacade)
         {
             _accountTransactionFacade = accountTransactionFacade;
+            _accountTransactionResult = accountTransactionResult;
         }
 
-        public override void Build<T>(T resultClass)
+        public void Build()
         {
-            accountTransaction = (AccountTransaction)resultClass.GetType().GetMethod("Convert").Invoke(resultClass, null);
+            _accountTransaction = new AccountTransaction();
+            _accountTransaction.AccountTransactionId = _accountTransactionResult.AccountTransactionId;
+            _accountTransaction.TransactionSourceId = _accountTransactionResult.TransactionSourceId;
+            _accountTransaction.Date = _accountTransactionResult.Date;
+            _accountTransaction.Amount = _accountTransactionResult.Amount;
+            _accountTransaction.Notes = _accountTransactionResult.Notes;
 
-            int transationTypeId = ((dynamic)(resultClass)).TransactionTypeId;
-            int transationSourceId = ((dynamic)(resultClass)).TransactionSourceId;
-            accountTransaction.TransactionType = _accountTransactionFacade.GetTransactionTypeByTransactionTypeId(transationTypeId);
-            accountTransaction.TransactionSource = _accountTransactionFacade.GetTransactionSourceByTransactionSourceId(transationSourceId);
-            accountTransaction.Debit = accountTransaction.TransactionType.Name == "Debit" ? accountTransaction.Amount :0 ;
-            accountTransaction.Credit = accountTransaction.TransactionType.Name == "Credit" ? accountTransaction.Amount : 0;
+            int transationTypeId = _accountTransactionResult.TransactionTypeId;
+            int transationSourceId = _accountTransactionResult.TransactionSourceId;
+            _accountTransaction.TransactionType = _accountTransactionFacade.GetTransactionTypeByTransactionTypeId(transationTypeId);
+            _accountTransaction.TransactionSource = _accountTransactionFacade.GetTransactionSourceByTransactionSourceId(transationSourceId);
+            _accountTransaction.Debit = _accountTransaction.TransactionType.Name == "Debit" ? _accountTransaction.Amount : 0;
+            _accountTransaction.Credit = _accountTransaction.TransactionType.Name == "Credit" ? _accountTransaction.Amount : 0;
+        }
+
+        public IAccountTransaction GetResult()
+        {
+            return _accountTransaction;
         }
 
         public void Dispose()
         {
-            accountTransaction = null;
-        }
-
-        public override object GetResult()
-        {
-            return accountTransaction;
+            _accountTransaction = null;
         }
     }
 }
