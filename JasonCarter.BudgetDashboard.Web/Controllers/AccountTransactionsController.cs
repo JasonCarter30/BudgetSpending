@@ -67,6 +67,8 @@ namespace JasonCarter.BudgetDashboard.Web.Controllers
         {
             OverviewViewModel budgetDashboardViewModel = new OverviewViewModel(_appConfiguration, HttpContext.Request);
             
+
+
             return View(budgetDashboardViewModel);
         }
 
