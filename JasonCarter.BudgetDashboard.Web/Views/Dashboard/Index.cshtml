@@ -1,0 +1,55 @@
+﻿@using Newtonsoft.Json
+@using Newtonsoft.Json.Serialization
+
+@{
+    ViewData["Title"] = "AddAccountTransaction";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<script type="text/javascript">
+        var model = @Html.Raw(Json.Serialize(Model, new Newtonsoft.Json.JsonSerializerSettings { ContractResolver = new DefaultContractResolver()}))
+</script>
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="~/js/Common.js"></script>
+<script src="~/js/WebServiceProxy.js"></script>
+<script src="~/lib/bootstrap3-typeahead/bootstrap3-typeahead.js"></script>
+
+<script src="~/lib/moment/moment.js"></script>
+
+
+<link href="~/lib/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+<script src="~/lib/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
+
+
+@*<script src="~/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>*@
+<script src="~/js/AddAccountTransaction.js"></script>
+
+<script src="~/js/Dashboard.js"></script>
+@*<link href="~/lib/bootstrap-datepicker/dist/css/bootstrap-datepicker.css" rel="stylesheet" />*@
+
+
+<script src="~/js/kendo/2017.2.504/kendo.all.min.js"></script>
+<link href="~/css/kendo/2017.2.504/kendo.bootstrap.min.css" rel="stylesheet" />
+<link href="~/css/kendo/2017.2.504/kendo.common.min.css" rel="stylesheet" />
+
+
+
+
+
+
+<h2>Dashboard</h2>
+
+
+<div class="container">
+
+
+    <div id="UtilitiesOverview">
+
+    </div>
+</div>
