@@ -1,4 +1,4 @@
-﻿$(document).ready(function (){
+﻿w$(document).ready(function (){
 
     $("#divGridAccountTransactions").kendoGrid({
         dataSource: model.AccountTransactions,

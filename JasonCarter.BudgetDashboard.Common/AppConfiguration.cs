@@ -20,14 +20,15 @@ namespace JasonCarter.BudgetDashboard.Common
         public AppConfiguration()
         {
             AppConfigItems = new Dictionary<string, object>();
-            //loadAppConfiguration();
         }
 
         public AppConfiguration(string assemblyName)
         {
             AppConfigItems = new Dictionary<string, object>();
             appConfigurationItems = new List<AppConfigurationItem>();
-            loadAppConfiguration(assemblyName);
+
+
+            //loadAppConfiguration(assemblyName);
         }
 
 
@@ -58,11 +59,7 @@ namespace JasonCarter.BudgetDashboard.Common
 
             using (HttpClient client = new HttpClient())
             {
-                //var url = "http://localhost/ApplicationConfiguration.WebAPI/api/ApplicationConfiguration/GetApplicationConfigurationByAssemblyName?assemblyName=" + assemblyName;
-
                 var url = "http://192.168.1.149:2112/api/ApplicationConfiguration/GetApplicationConfigurationByAssemblyName?assemblyName=" + assemblyName;
-
-                //var response = client.GetAsync(url).Result;
 
                 using (var response = client.GetAsync(url))
                 {
