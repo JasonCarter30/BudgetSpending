@@ -390,14 +390,7 @@ namespace JasonCarter.BudgetDashboard.Business.Facades
         {
             IDictionary<string, object> parameters = new Dictionary<string, object>();
 
-                    dynamic items = null;
-                    using (AccountTransactionRepository accountTransactionRepository = new AccountTransactionRepository(connectionString))
-                    {
-                        items = accountTransactionRepository.ExecuteStoredProcedureCommand(_appConfiguration["GetDebitCreaditTotalsGroupByMonthByYearCommandText"].Value.ToString(), parameters);
-                    }
-
             dynamic items = null;
-            //using (AccountTransactionRepository accountTransactionRepository = new AccountTransactionRepository(_appConfiguration["DatabaseConnectionString"].Value.ToString()))
             using (AccountTransactionRepository accountTransactionRepository = new AccountTransactionRepository(connectionString))
             {
                 items = accountTransactionRepository.ExecuteStoredProcedureCommand(_appConfiguration["GetDebitCreaditTotalsGroupByMonthByYearCommandText"].Value.ToString(), parameters);
