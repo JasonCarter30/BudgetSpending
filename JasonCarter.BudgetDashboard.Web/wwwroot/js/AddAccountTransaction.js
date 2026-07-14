@@ -1,5 +1,7 @@
 ﻿$(document).ready(function () {
 
+    var hey = 'you';
+
 
     $('#datetimepicker1').datetimepicker({
         defaultDate: new Date(),
