@@ -5,11 +5,11 @@ var WebServiceProxy = function () {
         var result = null;
 
 
-        $.each(model.AppConfiguration.Items, function (key, value) {
-            if (value.Name === keySearch) {
-                result = value.Value;
-            }
-        });
+        //$.each(model.AppConfiguration.Items, function (key, value) {
+        //    if (value.Name === keySearch) {
+        //        result = value.Value;
+        //    }
+        //});
 
         return result;
     }
@@ -17,39 +17,39 @@ var WebServiceProxy = function () {
 
     
 
-    var insertAccountTransactionURL = model.BaseURL + getAppConfigValue("InsertAccountTransactionURL");
-        var updateAccountTransactionURL = model.BaseURL + getAppConfigValue("UpdateAccountTransactionURL");
+    var insertAccountTransactionURL = document.location.origin + "/AccountTransactions/InsertAccountTransaction";
+    var updateAccountTransactionURL = document.location.origin + "/AccountTransactions/UpdateAccountTransaction";
 
 
-    var getTransactionSourcesByLookupValueURL = model.BaseURL + getAppConfigValue("GetTransactionSourcesURL");
-    var getDebitCreditTotalsGroupByMonthURL = model.BaseURL + getAppConfigValue("GetDebitCreditTotalsGroupByMonthURL");
-    var getYearlyTransactionSourceSummaryURL = model.BaseURL + getAppConfigValue("GetYearlyTransactionSourceSummaryURL");
+    var getTransactionSourcesByLookupValueURL = document.location.origin + "/AccountTransactions/GetTransactionSources";
+    var getDebitCreditTotalsGroupByMonthURL = document.location.origin + "GetDebitCreditTotalsGroupByMonth";
+    var getYearlyTransactionSourceSummaryURL = document.location.origin + "GetYearlyTransactionSourceSummary";
 
-    var getTransactionsByTransactionSourceIdTransactionTypeIdMonthYearURL = model.BaseURL + getAppConfigValue("GetTransactionsByTransactionSourceIdTransactionTypeIdMonthYearURL");
-
-
-    var getDataSourcesURL = model.BaseURL + getAppConfigValue("GetDataSourcesURL");
-    var getDashboardsURL = model.BaseURL + getAppConfigValue("GetDashboardsURL");
-    var getWidgetTypesURL = model.BaseURL + getAppConfigValue("GetWidgetTypesURL");
-    var getDataSourceDataURL = model.BaseURL + getAppConfigValue("GetDataSourceDataURL");
-    var getDataSourceColumnsURL = model.BaseURL + getAppConfigValue("GetDataSourceColumnsURL");
-    var getEditableWidgetConfigurationsByWidgetTypeURL = model.BaseURL + getAppConfigValue("GetEditableWidgetConfigurationsByWidgetTypeURL");
+    var getTransactionsByTransactionSourceIdTransactionTypeIdMonthYearURL = document.location.origin + "GetTransactionsByTransactionSourceIdTransactionTypeIdMonthYear";
 
 
-    var getWidgetConfigurationByWidgetTypeURL = model.BaseURL + getAppConfigValue("GetWidgetConfigurationByWidgetTypeURL");
+    var getDataSourcesURL = document.location.origin + "GetDataSources";
+    var getDashboardsURL = document.location.origin + "GetDashboards";
+    var getWidgetTypesURL = document.location.origin + "GetWidgetType";
+    var getDataSourceDataURL = document.location.origin + "GetDataSourceData";
+    var getDataSourceColumnsURL = document.location.origin + "GetDataSourceColumns";
+    var getEditableWidgetConfigurationsByWidgetTypeURL = document.location.origin + "GetEditableWidgetConfigurationsByWidgetType";
 
-    
-    
-    var getMonthlyGasSummaryByYearURL = model.BaseURL + getAppConfigValue("GetMonthlyGasSummaryByYearURL");
 
-    var getGasSpendingDetailsByYearAndMonthURL = model.BaseURL + getAppConfigValue("GetGasSpendingDetailsByYearAndMonthURL");
-
-    var getDataSourceDataByDataSourceIdAndDataFieldsURL = model.BaseURL + getAppConfigValue("GetDataSourceDataByDataSourceIdAndDataFieldsURL");
+    var getWidgetConfigurationByWidgetTypeURL = document.location.origin + "GetWidgetConfigurationByWidgetType";
 
     
-    var getAccountTransactionByAccountTransactionIdURL = getAppConfigValue("GetAccountTransactionByAccountTransactionId");
+    
+    var getMonthlyGasSummaryByYearURL = document.location.origin + "GetMonthlyGasSummaryByYear";
 
-    var logErrorURL = model.BaseURL + "/Error/LogError";
+    var getGasSpendingDetailsByYearAndMonthURL = document.location.origin + "GetGasSpendingDetailsByYearAndMonth";
+
+    var getDataSourceDataByDataSourceIdAndDataFieldsURL = document.location.origin + "GetDataSourceDataByDataSourceIdAndDataFields";
+
+    
+    var getAccountTransactionByAccountTransactionIdURL = "GetAccountTransactionByAccountTransactionId";
+
+    var logErrorURL = document.location.origin + "/Error/LogError";
 
   
 

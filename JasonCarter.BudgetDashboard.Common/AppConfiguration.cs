@@ -27,7 +27,7 @@ namespace JasonCarter.BudgetDashboard.Common
         {
             AppConfigItems = new Dictionary<string, object>();
             appConfigurationItems = new List<AppConfigurationItem>();
-            loadAppConfiguration(assemblyName);
+            //loadAppConfiguration(assemblyName);
         }
 
 

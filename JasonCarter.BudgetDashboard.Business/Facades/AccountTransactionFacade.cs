@@ -17,6 +17,9 @@ namespace JasonCarter.BudgetDashboard.Business.Facades
         private IMemoryCache _memoryCache;
         private static readonly object CacheLockObject = new object();
 
+        private string connectionString = "Server=tcp:mysqlserver5150.database.windows.net,1433;Initial Catalog=Budget;Persist Security Info=False;User ID=azureuser;Password=Bigchair19;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+
+
         public AccountTransactionFacade(AppConfiguration appConfiguration, IMemoryCache memoryCache)
         {
             _appConfiguration = appConfiguration;
@@ -47,7 +50,7 @@ namespace JasonCarter.BudgetDashboard.Business.Facades
         public dynamic GetCurrentMonthAccountTransactions()
         {
             dynamic items = null;
-            using (AccountTransactionRepository accountTransactionRepository = new AccountTransactionRepository(_appConfiguration["DatabaseConnectionString"].Value.ToString()))
+            using (AccountTransactionRepository accountTransactionRepository = new AccountTransactionRepository(connectionString))
             {
                 IDictionary<string, object> parameters = new Dictionary<string, object>();
 
@@ -100,7 +103,7 @@ namespace JasonCarter.BudgetDashboard.Business.Facades
 
             TransactionSourceResult transactionSourceResult = new TransactionSourceResult();
             transactionSourceResult.Name = payloadData.TransactionSourceName;
-            using (AccountTransactionRepository accountTransactionRepository = new AccountTransactionRepository(_appConfiguration["DatabaseConnectionString"].Value.ToString()))
+            using (AccountTransactionRepository accountTransactionRepository = new AccountTransactionRepository(connectionString))
             {
                 try
                 {
@@ -142,7 +145,7 @@ namespace JasonCarter.BudgetDashboard.Business.Facades
 
             TransactionSourceResult transactionSourceResult = new TransactionSourceResult();
             transactionSourceResult.Name = payloadData.TransactionSourceName;
-            using (AccountTransactionRepository accountTransactionRepository = new AccountTransactionRepository(_appConfiguration["DatabaseConnectionString"].Value.ToString()))
+            using (AccountTransactionRepository accountTransactionRepository = new AccountTransactionRepository(connectionString))
             {
                 try
                 {
@@ -171,7 +174,7 @@ namespace JasonCarter.BudgetDashboard.Business.Facades
         public object GetGasSpendingDetailsByYearAndMonth(int year, int month)
         {
             dynamic items = null;
-            using (AccountTransactionRepository accountTransactionRepository = new AccountTransactionRepository(_appConfiguration["DatabaseConnectionString"].Value.ToString()))
+            using (AccountTransactionRepository accountTransactionRepository = new AccountTransactionRepository(connectionString))
             {
                 IDictionary<string, object> parameters = new Dictionary<string, object>();
 
@@ -206,7 +209,7 @@ namespace JasonCarter.BudgetDashboard.Business.Facades
         public dynamic GetMonthlyGasSummaryByYear(int year)
         {
             dynamic items = null;
-            using (AccountTransactionRepository accountTransactionRepository = new AccountTransactionRepository(_appConfiguration["DatabaseConnectionString"].Value.ToString()))
+            using (AccountTransactionRepository accountTransactionRepository = new AccountTransactionRepository(connectionString))
             {
                 IDictionary<string, object> parameters = new Dictionary<string, object>();
 
@@ -221,7 +224,7 @@ namespace JasonCarter.BudgetDashboard.Business.Facades
         public dynamic GetRollingTwelveMonthGasSummary()
         {
             dynamic items = null;
-            using (AccountTransactionRepository accountTransactionRepository = new AccountTransactionRepository(_appConfiguration["DatabaseConnectionString"].Value.ToString()))
+            using (AccountTransactionRepository accountTransactionRepository = new AccountTransactionRepository(connectionString))
             {
                 IDictionary<string, object> parameters = new Dictionary<string, object>();
 
@@ -235,7 +238,7 @@ namespace JasonCarter.BudgetDashboard.Business.Facades
         public dynamic GetYearlyTransactionSourceSummary(int year)
         {
             dynamic items = null;
-            using (AccountTransactionRepository accountTransactionRepository = new AccountTransactionRepository(_appConfiguration["DatabaseConnectionString"].Value.ToString()))
+            using (AccountTransactionRepository accountTransactionRepository = new AccountTransactionRepository(connectionString))
             {
                 IDictionary<string, object> parameters = new Dictionary<string, object>();
 
@@ -257,14 +260,14 @@ namespace JasonCarter.BudgetDashboard.Business.Facades
         {
             string name = System.Reflection.MethodBase.GetCurrentMethod().Name;
             List<IAccountTransaction> result = new List<IAccountTransaction>();
-            string cacheKey = _appConfiguration["ResultSetCacheKey:AccountTransactions"].Value.ToString();
+            string cacheKey = "ResultSetCacheKey:AccountTransactions";
 
             if (!_memoryCache.TryGetValue(cacheKey, out result))
             {
                 lock (CacheLockObject)
                 {
                     IEnumerable<AccountTransactionResult> items = null;
-                    using(AccountTransactionRepository accountTransactionRepository = new AccountTransactionRepository(_appConfiguration["DatabaseConnectionString"].Value.ToString()))
+                    using(AccountTransactionRepository accountTransactionRepository = new AccountTransactionRepository(connectionString))
                     {
                         items = accountTransactionRepository.GetAll<AccountTransactionResult>(typeof(AccountTransaction)).ToList();
                     }
@@ -300,14 +303,14 @@ namespace JasonCarter.BudgetDashboard.Business.Facades
         {
             string name = System.Reflection.MethodBase.GetCurrentMethod().Name;
             List<ITransactionType> result = new List<ITransactionType>();
-            string cacheKey = _appConfiguration["ResultSetCacheKey:TransactionTypes"].Value.ToString();
+            string cacheKey = "ResultSetCacheKey:TransactionTypes";
 
             if (!_memoryCache.TryGetValue(cacheKey, out result))
             {
                 lock (CacheLockObject)
                 {
                     IEnumerable<TransactionTypeResult> items = null;
-                    using (AccountTransactionRepository accountTransactionRepository = new AccountTransactionRepository(_appConfiguration["DatabaseConnectionString"].Value.ToString()))
+                    using (AccountTransactionRepository accountTransactionRepository = new AccountTransactionRepository(connectionString))
                     {
                         items = accountTransactionRepository.GetAll<TransactionTypeResult>(typeof(TransactionType)).ToList();
                     }
@@ -343,14 +346,14 @@ namespace JasonCarter.BudgetDashboard.Business.Facades
         private IEnumerable<ITransactionSource> getTransactionSources()
         {
             List<ITransactionSource> result = new List<ITransactionSource>();
-            string cacheKey = _appConfiguration["ResultSetCacheKey:TransactionSources"].Value.ToString();
+            string cacheKey = "ResultSetCacheKey:TransactionSources";
 
             if (!_memoryCache.TryGetValue(cacheKey, out result))
             {
                 lock (CacheLockObject)
                 {
                     IEnumerable<TransactionSourceResult> items = null;
-                    using (AccountTransactionRepository accountTransactionRepository = new AccountTransactionRepository(_appConfiguration["DatabaseConnectionString"].Value.ToString()))
+                    using (AccountTransactionRepository accountTransactionRepository = new AccountTransactionRepository(connectionString))
                     {
                         items = accountTransactionRepository.GetAll<TransactionSourceResult>(typeof(TransactionSource)).ToList();
                     }
@@ -389,7 +392,7 @@ namespace JasonCarter.BudgetDashboard.Business.Facades
 
 
                     dynamic items = null;
-                    using (AccountTransactionRepository accountTransactionRepository = new AccountTransactionRepository(_appConfiguration["DatabaseConnectionString"].Value.ToString()))
+                    using (AccountTransactionRepository accountTransactionRepository = new AccountTransactionRepository(connectionString))
                     {
                         items = accountTransactionRepository.ExecuteStoredProcedureCommand(_appConfiguration["GetDebitCreaditTotalsGroupByMonthByYearCommandText"].Value.ToString(), parameters);
                     }
