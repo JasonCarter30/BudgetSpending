@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using Microsoft.Data.SqlClient;
-using System.Data;
+
 
 
 
@@ -46,8 +42,8 @@ namespace JasonCarter.BudgetDashboard.Test.Data
 
 
 
-            using (var conn = new SqlConnection(builder.ConnectionString))
-            //using (var conn = new SqlConnection(connectionString))
+            //using (var conn = new SqlConnection(builder.ConnectionString))
+            using (var conn = new SqlConnection(connectionString))
             {
                 conn.Open();
 

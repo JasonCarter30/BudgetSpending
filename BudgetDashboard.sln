@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30011.22
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197 d17.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JasonCarter.BudgetDashboard.Web", "JasonCarter.BudgetDashboard.Web\JasonCarter.BudgetDashboard.Web.csproj", "{465D384A-E0EB-4845-8F6C-FF57FC0896B0}"
 EndProject
@@ -11,9 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JasonCarter.BudgetDashboard
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JasonCarter.BudgetDashboard.Data", "JasonCarter.BudgetDashboard.Data\JasonCarter.BudgetDashboard.Data.csproj", "{3CCF47E5-FF8E-4923-85EC-4B171338D255}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JasonCarter.BudgetSpending.WebAPI", "JasonCarter.BudgetSpending.WebAPI\JasonCarter.BudgetSpending.WebAPI.csproj", "{5FB3DD85-89DE-499F-BA2F-640BA41A1306}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JasonCarter.BudgetDashboard.Test", "JasonCarter.BudgetDashboard.Test\JasonCarter.BudgetDashboard.Test.csproj", "{E960A772-0BBE-4F59-8D66-CAF0E947A33C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JasonCarter.BudgetDashboard.Test", "JasonCarter.BudgetDashboard.Test\JasonCarter.BudgetDashboard.Test.csproj", "{D74E860B-5B9D-1CD5-2C6C-E8B235C789AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,14 +35,10 @@ Global
 		{3CCF47E5-FF8E-4923-85EC-4B171338D255}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CCF47E5-FF8E-4923-85EC-4B171338D255}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CCF47E5-FF8E-4923-85EC-4B171338D255}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5FB3DD85-89DE-499F-BA2F-640BA41A1306}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5FB3DD85-89DE-499F-BA2F-640BA41A1306}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5FB3DD85-89DE-499F-BA2F-640BA41A1306}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5FB3DD85-89DE-499F-BA2F-640BA41A1306}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E960A772-0BBE-4F59-8D66-CAF0E947A33C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E960A772-0BBE-4F59-8D66-CAF0E947A33C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E960A772-0BBE-4F59-8D66-CAF0E947A33C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E960A772-0BBE-4F59-8D66-CAF0E947A33C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D74E860B-5B9D-1CD5-2C6C-E8B235C789AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D74E860B-5B9D-1CD5-2C6C-E8B235C789AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D74E860B-5B9D-1CD5-2C6C-E8B235C789AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D74E860B-5B9D-1CD5-2C6C-E8B235C789AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
