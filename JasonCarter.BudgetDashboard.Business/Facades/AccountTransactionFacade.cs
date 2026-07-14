@@ -388,15 +388,13 @@ namespace JasonCarter.BudgetDashboard.Business.Facades
 
         private dynamic getDebitCreditTotalsGroupByMonthByYear()
         {
-                    IDictionary<string, object> parameters = new Dictionary<string, object>();
+            IDictionary<string, object> parameters = new Dictionary<string, object>();
 
-
-                    dynamic items = null;
-                    using (AccountTransactionRepository accountTransactionRepository = new AccountTransactionRepository(connectionString))
-                    {
-                        items = accountTransactionRepository.ExecuteStoredProcedureCommand(_appConfiguration["GetDebitCreaditTotalsGroupByMonthByYearCommandText"].Value.ToString(), parameters);
-                    }
-
+            dynamic items = null;
+            using (AccountTransactionRepository accountTransactionRepository = new AccountTransactionRepository(connectionString))
+            {
+                items = accountTransactionRepository.ExecuteStoredProcedureCommand(_appConfiguration["GetDebitCreaditTotalsGroupByMonthByYearCommandText"].Value.ToString(), parameters);
+            }
 
 
             return items;
