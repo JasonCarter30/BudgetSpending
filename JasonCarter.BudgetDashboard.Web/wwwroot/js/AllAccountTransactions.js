@@ -2,11 +2,16 @@
     var selectedTransactionType = 1;
    
     var filterTransactionsByTransactionType = function (transactionTypeId) {
-        var result = model.AccountTransactions.filter(function (item) {
-            if (item.TransactionType.TransactionTypeId == transactionTypeId) {
-                return item;
-            }
-        })
+        let result = null;
+
+
+        if (model.accountTransactions) { 
+            result = model.accountTransactions.filter(function (item) {
+                if (item.transactionType.transactionTypeId == transactionTypeId) {
+                    return item;
+                }
+            });
+        }
 
         return result;
     }
@@ -23,7 +28,7 @@
 
     var loadAllTransactions = function () {
 
-        var transactions = filterTransactionsByTransactionType(selectedTransactionType);
+        let transactions = filterTransactionsByTransactionType(selectedTransactionType);
 
 
         $("#divGridAccountTransactions").kendoGrid({
@@ -45,30 +50,30 @@
             groupable: true,
             columns: [
                 {
-                    field: "Date",
+                    field: "date",
                     title: "Date",
                     type: "date",
                     format: "{0: MM/dd/yyyy}"
                 },
                 {
-                    field: "TransactionSource.Name",
+                    field: "transactionSource.name",
                     title: "Transaction Source"
                 },
                 {
-                    field: "Debit",
+                    field: "debit",
                     title: "Debit",
                     format: "{0: $##,###.00}",
-                    footerTemplate: "#=kendo.toString(sum,'c')#"
+                    //footerTemplate: "#=kendo.toString(sum,'c')#"
                 },
                 {
-                    field: "Credit",
+                    field: "credit",
                     title: "Credit",
                     format: "{0: $##,###.00}",
-                    footerTemplate: "#=kendo.toString(sum,'c')#"
+                    //footerTemplate: "#=kendo.toString(sum,'c')#"
                 },
 
                 {
-                    field: "Notes",
+                    field: "notes",
                     title: "Notes",
                 }
             ]

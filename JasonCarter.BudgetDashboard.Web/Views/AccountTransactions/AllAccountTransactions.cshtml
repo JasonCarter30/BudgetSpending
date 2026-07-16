@@ -15,14 +15,14 @@
 
 
 <script type="text/javascript">
-    var model = @Html.Raw(Json.Serialize(Model, new Newtonsoft.Json.JsonSerializerSettings { ContractResolver = new DefaultContractResolver()}))
+    var model = @Html.Raw(Json.Serialize(Model));
 </script>
 
 
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
 <script src="~/js/Common.js"></script>
-<script src="~/js/AllAccountTransactions.js"></script>
+<script src="~/js/AllAccountTransactions.js" asp-append-version="true"></script>
 
 <script src="~/js/kendo/2017.2.504/kendo.all.min.js"></script>
 

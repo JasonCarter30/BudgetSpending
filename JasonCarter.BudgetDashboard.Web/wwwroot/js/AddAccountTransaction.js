@@ -57,7 +57,7 @@
 
 
     $("#btnSaveAccountTransaction").on("click", function (e) {
-        var payloadData = {
+        let payloadData = {
             Date: getInputValue($("#txtDate")[0]),
             TransactionTypeId: getInputValue($("#selTransactionType")[0]),
             Amount: getInputValue($("#txtAmount")[0]),
@@ -65,6 +65,8 @@
             TransactionSourceId: $("#txtTransactionSource").attr("data-id"),
             TransactionSourceName: getInputValue($("#txtTransactionSource")[0])
         };
+
+
 
         new WebServiceProxy().InsertAccountTransaction(payloadData,
             function (data) {
