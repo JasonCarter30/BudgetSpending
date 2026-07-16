@@ -8,7 +8,7 @@
 @model OverviewViewModel;
 
 <script type="text/javascript">
-        var model = @Html.Raw(Json.Serialize(Model, new Newtonsoft.Json.JsonSerializerSettings { ContractResolver = new DefaultContractResolver()}))
+    var model = @Html.Raw(Json.Serialize(Model));
 </script>
 
 

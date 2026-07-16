@@ -1,5 +1,6 @@
-﻿w$(document).ready(function (){
+﻿
 
+$(document).ready(function () {
     $("#divGridAccountTransactions").kendoGrid({
         dataSource: model.AccountTransactions,
         theme: 'bootstrap',

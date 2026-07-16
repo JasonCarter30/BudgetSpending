@@ -11,8 +11,16 @@
 
     <title>@ViewData["Title"] - Budget Dashboard</title>
 
+
+	<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
     <script src="~/lib/jquery/dist/jquery.js"></script>
+
+
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+
 
 
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -41,7 +49,7 @@
                             <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                             <li><a asp-area="" asp-controller="Admin" asp-action="Index">Admin</a></li>
                         </ul>
-                        <p class="nav navbar-text navbar-right">Hello, @User.Identity.Name!</p>
+                        @* <p class="nav navbar-text navbar-right">Hello, @User.Identity.Name!</p> *@
                     </div>
                 </div>
             </nav>

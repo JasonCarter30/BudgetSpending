@@ -24,11 +24,14 @@ namespace JasonCarter.BudgetDashboard.Web
             services.AddMemoryCache();
             services.AddSingleton(new AppConfiguration(System.AppDomain.CurrentDomain.FriendlyName));
 
-            services.AddMvc()
-            .AddJsonOptions(options =>
-            {
-                options.SerializerSettings.Formatting = Formatting.Indented;
-            });
+            services.AddMvc();
+
+            // Add MVC services with Endpoint Routing enabled (default behavior)
+            services.AddControllersWithViews();
+            //.AddJsonOptions(options =>
+            //{
+            //    options.SerializerSettings.Formatting = Formatting.Indented;
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,7 +40,7 @@ namespace JasonCarter.BudgetDashboard.Web
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
+                //app.UseBrowserLink();
             }
             else
             {
@@ -46,12 +49,44 @@ namespace JasonCarter.BudgetDashboard.Web
 
             app.UseStaticFiles();
 
-            app.UseMvc(routes =>
+            app.UseRouting(); // Add this line
+
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                // Map default controller route
+                endpoints.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            app.UseRouting(); // Add this line
+
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            app.UseExceptionHandler("/error");
+
+            app.UseRouting(); // Add this line
+
+            app.UseAuthorization();
+            app.UseAuthentication();
+
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+
+
+            //app.UseMvc(routes =>
+            //{
+            //    routes.MapRoute(
+            //        name: "default",
+            //        template: "{controller=Home}/{action=Index}/{id?}");
+            //});
         }
     }
 }

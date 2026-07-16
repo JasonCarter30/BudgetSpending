@@ -15,7 +15,7 @@
 
 
 <script type="text/javascript">
-        var model = @Html.Raw(Json.Serialize(Model, new Newtonsoft.Json.JsonSerializerSettings { ContractResolver = new DefaultContractResolver()}))
+    var model = @Html.Raw(Json.Serialize(Model));
 </script>
 
 <script src="~/js/kendo/2017.2.504/kendo.all.min.js"></script>
