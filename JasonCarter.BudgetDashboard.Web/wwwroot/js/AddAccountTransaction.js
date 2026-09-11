@@ -70,7 +70,7 @@
 
         new WebServiceProxy().InsertAccountTransaction(payloadData,
             function (data) {
-                window.location.href = model.BaseURL; 
+                window.location.href = document.location.origin; 
             },
             function (error) {
 

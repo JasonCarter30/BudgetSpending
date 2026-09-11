@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
 
@@ -139,6 +139,9 @@ namespace JasonCarter.BudgetDashboard.Data.Repositories
         public IEnumerable<T> GetAll<T>(Type entityType) where T : class
         {
             string tableName = entityType.Name;
+
+            var sql = string.Format("SELECT * FROM {0}", tableName);
+
 
             var items = connection.Query<T>(string.Format("SELECT * FROM {0}", tableName));
 

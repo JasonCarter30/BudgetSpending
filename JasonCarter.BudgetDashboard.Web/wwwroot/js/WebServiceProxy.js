@@ -21,7 +21,7 @@ var WebServiceProxy = function () {
     var updateAccountTransactionURL = document.location.origin + "/AccountTransactions/UpdateAccountTransaction";
 
 
-    var getTransactionSourcesByLookupValueURL = document.location.origin + "/AccountTransactions/GetTransactionSources";
+    var getTransactionSourcesByLookupValueURL = document.location.origin + "/AccountTransactions/GetTransactionSourcesByLookupValue";
     var getDebitCreditTotalsGroupByMonthURL = document.location.origin + "GetDebitCreditTotalsGroupByMonth";
     var getYearlyTransactionSourceSummaryURL = document.location.origin + "GetYearlyTransactionSourceSummary";
 
