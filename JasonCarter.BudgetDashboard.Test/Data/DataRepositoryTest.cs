@@ -1,5 +1,9 @@
 ﻿
+
 using Microsoft.Data.SqlClient;
+
+
+
 
 
 
@@ -38,8 +42,8 @@ namespace JasonCarter.BudgetDashboard.Test.Data
             builder.ConnectTimeout = 30;
 
 
-            var connectionString = "Server=tcp:mysqlserver5150.database.windows.net,1433;Initial Catalog=Budget;Persist Security Info=False;User ID=azureuser;Password=Bigchair19;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-
+            //var connectionString = "Server=tcp:mysqlserver5150.database.windows.net,1433;Initial Catalog=Budget;Persist Security Info=False;User ID=azureuser;Password=Bigchair19;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            var connectionString = @"Data Source=JASONCARTER\JASONCARTER;Initial Catalog=Budget;Integrated Security=True;MultipleActiveResultSets=True;Connect Timeout=30;Encrypt=True;TrustServerCertificate=True;";
 
 
             //using (var conn = new SqlConnection(builder.ConnectionString))

@@ -17,8 +17,8 @@ namespace JasonCarter.BudgetDashboard.Business.Facades
         private IMemoryCache _memoryCache;
         private static readonly object CacheLockObject = new object();
 
-        private string connectionString = "Server=tcp:mysqlserver5150.database.windows.net,1433;Initial Catalog=Budget;Persist Security Info=False;User ID=azureuser;Password=Bigchair19;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-
+        //private string connectionString = "Server=tcp:mysqlserver5150.database.windows.net,1433;Initial Catalog=Budget;Persist Security Info=False;User ID=azureuser;Password=Bigchair19;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        private string connectionString = @"Data Source=JASONCARTER\JASONCARTER;Initial Catalog=Budget;Integrated Security=True;MultipleActiveResultSets=True;Connect Timeout=30;Encrypt=True;TrustServerCertificate=True;";
 
         public AccountTransactionFacade(AppConfiguration appConfiguration, IMemoryCache memoryCache)
         {
@@ -120,7 +120,7 @@ namespace JasonCarter.BudgetDashboard.Business.Facades
 
                     clearMemoryCache();
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     accountTransactionRepository.RollbackTransaction();
                     throw;
